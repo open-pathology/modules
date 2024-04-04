@@ -1,0 +1,21 @@
+{
+    "version": "0.0.1",
+    "module": {
+        "name": "helloworld",
+        "description": {
+            "en": "Sample module that produces a quick-and-dirty foreground mask for a WSI."
+        },
+        "authors": [
+            {
+                "url": "https://github.com/ericrobert"
+            }
+        ],
+        "inputs": {
+            "wsi": {
+                "types": [
+                    "image/tiff"
+                ]
+            }
+        }
+    }
+}

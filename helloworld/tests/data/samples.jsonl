@@ -1,0 +1,3 @@
+{"id":"1", "inputs": {"wsi": "/wsi/CMU-1.svs"}, "outputs": "/out/tests/data"}
+{"id":"2", "inputs": {"wsi": "/wsi/CMU-2.svs"}, "outputs": "/out/tests/data"}
+{"id":"3", "inputs": {"wsi": "/wsi/CMU-3.svs"}, "outputs": "/out/tests/data"}

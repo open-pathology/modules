@@ -1,0 +1,10 @@
+{
+  "$mask": "CMU-1.png",
+  "coverage": {
+    "size": 23220,
+    "mask": 4346,
+    "area": 0.1871662360034453,
+    "%": "18.72",
+    "present": true
+  }
+}
