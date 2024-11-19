@@ -35,6 +35,6 @@ def test_mask(tmp_path, capsys):
         out = Path(tmp_path, test)
         assert rep["id"] == test
         assert rep["results"] == json.loads(ref.read_text())
+        # if there was an error, there will be no output mask (for the time being)
         if "error" not in rep["results"]:
-            # no mask was generated, the result was an error
             assert png.read_bytes() == Path(out, res["$mask"]).read_bytes()
