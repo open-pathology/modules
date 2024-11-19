@@ -5,14 +5,14 @@ from main import main
 
 
 def test_mask(tmp_path, capsys):
-    tests = ["CMU-1.svs", "CMU-2.svs", "CMU-3.svs"]
+    tests = ["CMU-1.svs", "CMU-2.svs", "CMU-3.svs", "missing"]
 
     # create a batch of requests
     lines = []
-    for i, name in enumerate(tests):
-        out = Path(tmp_path, str(i))
+    for test in tests:
+        out = Path(tmp_path, test)
         out.mkdir()
-        req = dict(id=str(i), inputs={"wsi": f"/wsi/{name}"}, outputs=str(out))
+        req = dict(id=test, inputs={"wsi": f"/wsi/{test}"}, outputs=str(out))
         lines.append(json.dumps(req))
 
     # execute
@@ -26,13 +26,15 @@ def test_mask(tmp_path, capsys):
     assert len(results) == len(tests)
 
     # validate results
-    data = Path(__file__).parent / "data"
-    for i, line in enumerate(results):
-        rep = json.loads(line)
+    for test, result in zip(tests, results):
+        data = Path(__file__).parent / "data" / test
+        rep = json.loads(result)
         res = rep["results"]
-        ref = Path(data, tests[i]).with_suffix(".json")
-        png = Path(data, tests[i]).with_suffix(".png")
-        out = Path(tmp_path, str(i))
-        assert rep["id"] == str(i)
+        ref = Path(data, "output.json")
+        png = Path(data, "mask.png")
+        out = Path(tmp_path, test)
+        assert rep["id"] == test
         assert rep["results"] == json.loads(ref.read_text())
-        assert png.read_bytes() == Path(out, res["$mask"]).read_bytes()
+        if "error" not in rep["results"]:
+            # no mask was generated, the result was an error
+            assert png.read_bytes() == Path(out, res["$mask"]).read_bytes()

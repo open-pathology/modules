@@ -1,3 +1,4 @@
-{"id":"1", "inputs": {"wsi": "/wsi/CMU-1.svs"}, "outputs": "/out/tests/data"}
-{"id":"2", "inputs": {"wsi": "/wsi/CMU-2.svs"}, "outputs": "/out/tests/data"}
-{"id":"3", "inputs": {"wsi": "/wsi/CMU-3.svs"}, "outputs": "/out/tests/data"}
+{"id":"CMU-1.svs", "inputs": {"wsi": "/wsi/CMU-1.svs"}, "outputs": "/out/tests/data/CMU-1.svs"}
+{"id":"CMU-2.svs", "inputs": {"wsi": "/wsi/CMU-2.svs"}, "outputs": "/out/tests/data/CMU-2.svs"}
+{"id":"CMU-3.svs", "inputs": {"wsi": "/wsi/CMU-3.svs"}, "outputs": "/out/tests/data/CMU-3.svs"}
+{"id":"missing", "inputs": {"wsi": "/wsi/missing"}, "outputs": "/out/tests/data/missing"}

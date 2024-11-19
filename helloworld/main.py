@@ -27,7 +27,7 @@ def make_mask(wsi, output, threshold):
 
         # assume only tiles above the threshold are foreground
         mask = tiles >= threshold_otsu(tiles)
-        png = f"{wsi.stem}.png"
+        png = f"mask.png"
         Image.fromarray(mask).save(Path(output, png))
 
     # create analysis response
@@ -53,14 +53,19 @@ def main(lines, threshold):
     for line in lines:
         request = json.loads(line)
         try:
-            results = make_mask(
+            output = make_mask(
                 Path(request["inputs"]["wsi"]),
                 Path(request["outputs"]),
                 threshold,
             )
-            print(json.dumps({"id": request["id"], "results": results}))
+
         except Exception as err:
-            print(json.dumps({"id": request["id"], "error": repr(err)}))
+            output = { "error": repr(err) }
+
+        with open(Path(request["outputs"], "output.json"), 'w') as f:
+            json.dump(output, f)
+
+        print(json.dumps({"id": request["id"], "results": output}))
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 {
-  "$mask": "CMU-3.png",
+  "$mask": "mask.png",
   "coverage": {
     "size": 45924,
     "mask": 5261,
